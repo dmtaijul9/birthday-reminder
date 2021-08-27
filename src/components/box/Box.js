@@ -7,13 +7,11 @@ import Button from "../button/Button";
 const Box = () => {
   const [peoples, setPeoples] = useState(data);
   const likeHandler = (id) => {
-    const changedPerson = peoples.filter((person) => person.id === id)[0];
-    changedPerson.liked = !changedPerson.liked;
+    const newPeoples = [...peoples];
 
-    const newPeoples = [
-      changedPerson,
-      ...peoples.filter((person) => person.id !== id),
-    ];
+    const indexOfTarget = newPeoples.findIndex((person) => person.id === id);
+    newPeoples[indexOfTarget].liked = !newPeoples[indexOfTarget].liked;
+
     setPeoples(newPeoples);
   };
   const singleRemoveHandler = (id) => {
